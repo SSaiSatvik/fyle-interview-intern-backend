@@ -15,7 +15,8 @@ def create_n_graded_assignments_for_teacher(number: int = 0, teacher_id: int = 1
 
     Returns:
     - int: Count of assignments with grade 'A'.
-    """
+    # """
+
     # Count the existing assignments with grade 'A' for the specified teacher
     grade_a_counter: int = Assignment.filter(
         Assignment.teacher_id == teacher_id,
@@ -72,8 +73,10 @@ def test_get_assignments_in_graded_state_for_each_student():
     with open('tests/SQL/number_of_graded_assignments_for_each_student.sql', encoding='utf8') as fo:
         sql = fo.read()
 
+
     # Execute the SQL query compare the result with the expected result
     sql_result = db.session.execute(text(sql)).fetchall()
+
     for itr, result in enumerate(expected_result):
         assert result[0] == sql_result[itr][0]
 
